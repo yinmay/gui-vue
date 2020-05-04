@@ -1,15 +1,14 @@
-import App from '../App.vue';
+import GButton from '../components/Button/Button';
 
 export default {
-  title: 'App',
+  title: 'GButton',
 };
+export const button = () => ({
+  components: { GButton },
 
-export const toStorybook = () => ({
-  components: { App },
-
-  template: '<App />',
+  template: '<g-button><div>123</div></g-button>',
 });
 
-toStorybook.story = {
-  name: 'app',
+button.story = {
+  name: 'Button',
 };
