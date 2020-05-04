@@ -1,7 +1,10 @@
-<!--  -->
+<!-- slot，props 以及class绑定，代码模板，可惜v-modal不能用 -->
 <template>
   <div>
-    <button>
+    <button :class="{ [iconPosition]: true }">
+      <div v-if="icon">
+        <img class="icon" src="../../assets/logo.png" />
+      </div>
       <slot></slot>
     </button>
   </div>
@@ -9,6 +12,15 @@
 
 <script>
 export default {
+  //   props: ['icon', 'iconPosition'],
+  //默认值写法
+  props: {
+    icon: {},
+    iconPosition: {
+      type: String,
+      default: 'left',
+    },
+  },
   //import引入的组件需要注入到对象中才能使用
   components: {},
   data() {
@@ -36,6 +48,23 @@ export default {
 </script>
 <style scoped>
 button {
-  color: red;
+  border-radius: 4px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 0.5em 1em;
+}
+.icon {
+  height: 1em;
+  width: 1em;
+  display: inline-block;
+  margin-right: 0.5em;
+  margin-left: 0.5em;
+}
+.left {
+  flex-direction: row;
+}
+.right {
+  flex-direction: row-reverse;
 }
 </style>
