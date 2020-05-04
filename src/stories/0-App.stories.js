@@ -7,7 +7,7 @@ export const button = () => ({
   components: { GButton },
 
   template:
-    '<g-button icon="true" iconPosition="left"><div>123</div></g-button>',
+    '<g-button icon="true" iconPosition="right"><div>123</div></g-button>',
 });
 
 button.story = {

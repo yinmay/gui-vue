@@ -1,4 +1,4 @@
-<!-- slot，props 以及class绑定，代码模板，可惜v-modal不能用 -->
+<!-- slot，props[默认值，validator] 以及class绑定，代码模板[vue tab键]，可惜v-modal不能用 -->
 <template>
   <div>
     <button :class="{ [iconPosition]: true }">
@@ -19,6 +19,9 @@ export default {
     iconPosition: {
       type: String,
       default: 'left',
+      validator(value) {
+        return value !== 'left' || value !== 'right';
+      },
     },
   },
   //import引入的组件需要注入到对象中才能使用
