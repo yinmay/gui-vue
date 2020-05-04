@@ -8,7 +8,7 @@ module.exports = {
     autoprefixer: {},
     'postcss-selector-namespace': {
       namespace(css) {
-        console.log(css);
+        // console.log(123, css);
         return '.gui-vue';
       },
     },

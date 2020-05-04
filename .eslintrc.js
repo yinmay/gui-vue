@@ -19,6 +19,13 @@ module.exports = {
   plugins: ['vue'],
   // add your custom rules here
   rules: {
+    'vue/no-parsing-error': [
+      2,
+      {
+        'x-invalid-end-tag': false,
+        'invalid-first-character-of-tag-name': false,
+      },
+    ],
     semi: ['error', 'always'],
     'comma-dangle': [
       'error',

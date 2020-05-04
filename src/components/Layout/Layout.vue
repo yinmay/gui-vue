@@ -1,31 +1,26 @@
-<!-- slot，props[默认值，validator] 以及class绑定，代码模板[vue tab键]，可惜v-modal不能用 -->
+<!-- Layput -->
+<!-- props的参数，组件的引入 -->
+
 <template>
-  <div>
-    <button :class="{ [iconPosition]: true }">
-      <div v-if="icon">
-        <img class="icon" src="../../assets/logo.png" />
-      </div>
-      <slot></slot>
-    </button>
+  <div class="gui-vue">
+    <Row>
+      <Col :span="2" offset="2">123</Col>
+      <Col span="1">341</Col>
+      <Col>341</Col>
+    </Row>
   </div>
 </template>
 
 <script>
+//这里可以导入其他文件（比如：组件，工具js，第三方插件js，json文件，图片文件等等）
+//例如：import 《组件名称》 from '《组件路径》';
+import Row from "./Row";
+import Col from "./Col";
+
 export default {
-  //   props: ['icon', 'iconPosition'],
-  //默认值写法
-  props: {
-    icon: {},
-    iconPosition: {
-      type: String,
-      default: "left",
-      validator(value) {
-        return value !== "left" || value !== "right";
-      }
-    }
-  },
   //import引入的组件需要注入到对象中才能使用
-  components: {},
+  components: { Row, Col },
+
   data() {
     //这里存放数据
     return {};
@@ -49,27 +44,18 @@ export default {
   activated() {} //如果页面有keep-alive缓存功能，这个函数会触发
 };
 </script>
-<style scoped>
-button {
-  border-radius: 4px;
+<style  scoped>
+.row {
   display: flex;
-  justify-content: center;
-  align-items: center;
-  padding: 0.5em 1em;
 }
-.icon {
-  height: 1em;
-  width: 1em;
-  display: inline-block;
-  margin-right: 0.5em;
-  margin-left: 0.5em;
+
+.col {
+  height: 100px;
+  border: 1px solid red;
+  width: 50%;
+  background: grey;
 }
-.left {
-  flex-direction: row;
-}
-.right {
-  flex-direction: row-reverse;
+.col[data-span="1"] {
+  width: 4.166667%;
 }
 </style>
-
-

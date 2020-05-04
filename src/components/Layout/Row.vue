@@ -1,29 +1,15 @@
-<!-- slot，props[默认值，validator] 以及class绑定，代码模板[vue tab键]，可惜v-modal不能用 -->
+<!-- Layput -->
 <template>
-  <div>
-    <button :class="{ [iconPosition]: true }">
-      <div v-if="icon">
-        <img class="icon" src="../../assets/logo.png" />
-      </div>
-      <slot></slot>
-    </button>
+  <div class="row">
+    <slot />
   </div>
 </template>
 
 <script>
+//这里可以导入其他文件（比如：组件，工具js，第三方插件js，json文件，图片文件等等）
+//例如：import 《组件名称》 from '《组件路径》';
+
 export default {
-  //   props: ['icon', 'iconPosition'],
-  //默认值写法
-  props: {
-    icon: {},
-    iconPosition: {
-      type: String,
-      default: "left",
-      validator(value) {
-        return value !== "left" || value !== "right";
-      }
-    }
-  },
   //import引入的组件需要注入到对象中才能使用
   components: {},
   data() {
@@ -49,27 +35,8 @@ export default {
   activated() {} //如果页面有keep-alive缓存功能，这个函数会触发
 };
 </script>
-<style scoped>
-button {
-  border-radius: 4px;
+<style  scoped>
+.row {
   display: flex;
-  justify-content: center;
-  align-items: center;
-  padding: 0.5em 1em;
-}
-.icon {
-  height: 1em;
-  width: 1em;
-  display: inline-block;
-  margin-right: 0.5em;
-  margin-left: 0.5em;
-}
-.left {
-  flex-direction: row;
-}
-.right {
-  flex-direction: row-reverse;
 }
 </style>
-
-
