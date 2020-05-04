@@ -1,15 +1,12 @@
 import GButton from '../components/Button/Button';
+import Vue from 'vue';
+import { storiesOf } from '@storybook/vue';
 
 export default {
   title: 'GButton',
 };
-export const button = () => ({
+
+storiesOf('Button', module).add('default', () => ({
   components: { GButton },
-
-  template:
-    '<g-button icon="true" iconPosition="right"><div>123</div></g-button>',
-});
-
-button.story = {
-  name: 'Button',
-};
+  template: '<g-button>default</g-button>',
+}));
