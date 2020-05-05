@@ -18,11 +18,11 @@ export default {
     icon: {},
     iconPosition: {
       type: String,
-      default: "left",
+      default: 'left',
       validator(value) {
-        return value !== "left" || value !== "right";
-      }
-    }
+        return value !== 'left' || value !== 'right';
+      },
+    },
   },
   //import引入的组件需要注入到对象中才能使用
   components: {},
@@ -46,7 +46,7 @@ export default {
   updated() {}, //生命周期 - 更新之后
   beforeDestroy() {}, //生命周期 - 销毁之前
   destroyed() {}, //生命周期 - 销毁完成
-  activated() {} //如果页面有keep-alive缓存功能，这个函数会触发
+  activated() {}, //如果页面有keep-alive缓存功能，这个函数会触发
 };
 </script>
 <style lang="scss" scoped>
@@ -56,13 +56,13 @@ button {
   justify-content: center;
   align-items: center;
   padding: 0.5em 1em;
-}
-.icon {
-  height: 1em;
-  width: 1em;
-  display: inline-block;
-  margin-right: 0.5em;
-  margin-left: 0.5em;
+  .icon {
+    height: 1em;
+    width: 1em;
+    display: inline-block;
+    margin-right: 0.5em;
+    margin-left: 0.5em;
+  }
 }
 .left {
   flex-direction: row;
@@ -71,5 +71,3 @@ button {
   flex-direction: row-reverse;
 }
 </style>
-
-

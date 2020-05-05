@@ -1,7 +1,21 @@
 <!-- Layput -->
 <template>
-  <div class="col" :data-span="span" :class="[`offset-${offset}`]">
-    <slot />
+  <div
+    class="col"
+    :data-span="span"
+    :class="[offset && `offset-${offset}`, `col-${span}`]"
+    :style="{
+      paddingLeft: gutter / 2 + 'px',
+      paddingRight: gutter / 2 + 'px',
+    }"
+  >
+    <div
+      :style="{
+        border: '1px solid red',
+      }"
+    >
+      <slot />
+    </div>
   </div>
 </template>
 
@@ -15,16 +29,16 @@ export default {
   props: {
     span: {
       type: [Number, String],
-      value: undefined
+      value: undefined,
     },
     offset: {
       type: [Number, String],
-      value: undefined
-    }
+      value: undefined,
+    },
   },
   data() {
     //这里存放数据
-    return {};
+    return { gutter: 0 };
   },
   //监听属性 类似于data概念
   computed: {},
@@ -35,30 +49,35 @@ export default {
   //生命周期 - 创建完成（可以访问当前this实例）
   created() {},
   //生命周期 - 挂载完成（可以访问DOM元素）
-  mounted() {},
+  mounted() {
+    console.log(this.gutter, this);
+  },
   beforeCreate() {}, //生命周期 - 创建之前
   beforeMount() {}, //生命周期 - 挂载之前
   beforeUpdate() {}, //生命周期 - 更新之前
   updated() {}, //生命周期 - 更新之后
   beforeDestroy() {}, //生命周期 - 销毁之前
   destroyed() {}, //生命周期 - 销毁完成
-  activated() {} //如果页面有keep-alive缓存功能，这个函数会触发
+  activated() {}, //如果页面有keep-alive缓存功能，这个函数会触发
 };
 </script>
-<style  scoped>
+<style lang="scss" scoped>
 .col {
   height: 100px;
-  border: 1px solid red;
   width: 50%;
   background: grey;
-}
-.col[data-span="1"] {
-  width: 4.166667%;
-}
-.col[data-span="2"] {
-  width: 8.3%;
-}
-.offset-2 {
-  margin-left: 8.3%;
+  //   padding: 0 10px;
+  $class-prefix: col-;
+  @for $n from 1 through 24 {
+    &.#{$class-prefix}#{$n} {
+      width: ($n/24) * 100%;
+    }
+  }
+  $class-prefix: offset-;
+  @for $n from 1 through 24 {
+    &.#{$class-prefix}#{$n} {
+      margin-left: ($n/24) * 100%;
+    }
+  }
 }
 </style>
