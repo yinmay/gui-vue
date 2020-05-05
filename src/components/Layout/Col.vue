@@ -1,19 +1,7 @@
 <!-- Layput -->
 <template>
-  <div
-    class="col"
-    :data-span="span"
-    :class="[offset && `offset-${offset}`, `col-${span}`]"
-    :style="{
-      paddingLeft: gutter / 2 + 'px',
-      paddingRight: gutter / 2 + 'px',
-    }"
-  >
-    <div
-      :style="{
-        border: '1px solid red',
-      }"
-    >
+  <div class="col" :data-span="span" :class="classes" :style="colStyle">
+    <div :style="{border: '1px solid red'}">
       <slot />
     </div>
   </div>
@@ -29,19 +17,30 @@ export default {
   props: {
     span: {
       type: [Number, String],
-      value: undefined,
+      value: undefined
     },
     offset: {
       type: [Number, String],
-      value: undefined,
-    },
+      value: undefined
+    }
   },
   data() {
     //这里存放数据
     return { gutter: 0 };
   },
   //监听属性 类似于data概念
-  computed: {},
+  computed: {
+    colStyle() {
+      console.log(this.gutter);
+      return {
+        paddingLeft: this.gutter / 2 + "px",
+        paddingRight: this.gutter / 2 + "px"
+      };
+    },
+    classes() {
+      return [this.offset && `offset-${this.offset}`, `col-${this.span}`];
+    }
+  },
   //监控data中的数据变化
   watch: {},
   //方法集合
@@ -49,16 +48,14 @@ export default {
   //生命周期 - 创建完成（可以访问当前this实例）
   created() {},
   //生命周期 - 挂载完成（可以访问DOM元素）
-  mounted() {
-    console.log(this.gutter, this);
-  },
+  mounted() {},
   beforeCreate() {}, //生命周期 - 创建之前
   beforeMount() {}, //生命周期 - 挂载之前
   beforeUpdate() {}, //生命周期 - 更新之前
   updated() {}, //生命周期 - 更新之后
   beforeDestroy() {}, //生命周期 - 销毁之前
   destroyed() {}, //生命周期 - 销毁完成
-  activated() {}, //如果页面有keep-alive缓存功能，这个函数会触发
+  activated() {} //如果页面有keep-alive缓存功能，这个函数会触发
 };
 </script>
 <style lang="scss" scoped>

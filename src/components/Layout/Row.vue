@@ -1,9 +1,6 @@
 <!-- Layput -->
 <template>
-  <div
-    class="row"
-    :style="{ marginLeft: -gutter / 2 + 'px', marginRight: -gutter / 2 + 'px' }"
-  >
+  <div class="row" :style="rowStyle">
     <slot />
   </div>
 </template>
@@ -16,8 +13,8 @@ export default {
   //import引入的组件需要注入到对象中才能使用
   props: {
     gutter: {
-      type: [Number, String],
-    },
+      type: [Number, String]
+    }
   },
   components: {},
   data() {
@@ -25,7 +22,15 @@ export default {
     return {};
   },
   //监听属性 类似于data概念
-  computed: {},
+  computed: {
+    //一个data属性根据另一个data属性改变，不能放在data里面
+    rowStyle() {
+      return {
+        marginLeft: -this.gutter / 2 + "px",
+        marginRight: -this.gutter / 2 + "px"
+      };
+    }
+  },
   //监控data中的数据变化
   watch: {},
   //方法集合
@@ -37,7 +42,7 @@ export default {
   //生命周期 - 挂载完成（可以访问DOM元素）相当于mounted
   mounted() {
     console.log(this.$children);
-    this.$children.forEach((vm) => {
+    this.$children.forEach(vm => {
       vm.gutter = this.gutter;
     });
   },
@@ -47,7 +52,7 @@ export default {
   updated() {}, //生命周期 - 更新之后
   beforeDestroy() {}, //生命周期 - 销毁之前
   destroyed() {}, //生命周期 - 销毁完成
-  activated() {}, //如果页面有keep-alive缓存功能，这个函数会触发
+  activated() {} //如果页面有keep-alive缓存功能，这个函数会触发
 };
 </script>
 <style scoped lang="scss">
