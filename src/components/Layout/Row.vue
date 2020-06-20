@@ -1,6 +1,6 @@
 <!-- Layput -->
 <template>
-  <div class="row" :style="rowStyle">
+  <div class="row" :style="rowStyle" :class="rowClass">
     <slot />
   </div>
 </template>
@@ -14,6 +14,10 @@ export default {
   props: {
     gutter: {
       type: [Number, String]
+    },
+    align: {
+      type: String,
+      value: "left"
     }
   },
   components: {},
@@ -29,6 +33,9 @@ export default {
         marginLeft: -this.gutter / 2 + "px",
         marginRight: -this.gutter / 2 + "px"
       };
+    },
+    rowClass() {
+      return [this.align && `align-${this.align}`];
     }
   },
   //监控data中的数据变化
@@ -59,5 +66,8 @@ export default {
 .row {
   display: flex;
   margin: 0 -10px;
+  &.align-right {
+    justify-content: flex-end;
+  }
 }
 </style>

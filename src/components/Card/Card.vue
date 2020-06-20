@@ -1,26 +1,25 @@
-<!-- Layput -->
-<!-- props的参数，组件的引入, scss变量函数, style绑定 class绑定,  -->
-
+<!--  -->
 <template>
   <div class="gui-vue">
-    <Row gutter="60" align="left">
-      <Col :span="2" :offset="2">123</Col>
-      <Col span="5">341</Col>
-      <!-- <Col>341</Col> -->
-    </Row>
+    <div class="gui-card">
+      <div class="header">
+        <slot name="header"></slot>
+      </div>
+      <div class="content">
+        <slot name="content"></slot>
+      </div>
+      <slot name="footer"></slot>
+    </div>
   </div>
 </template>
 
 <script>
 //这里可以导入其他文件（比如：组件，工具js，第三方插件js，json文件，图片文件等等）
 //例如：import 《组件名称》 from '《组件路径》';
-import Row from "./Row";
-import Col from "./Col";
 
 export default {
   //import引入的组件需要注入到对象中才能使用
-  components: { Row, Col },
-
+  components: {},
   data() {
     //这里存放数据
     return {};
@@ -44,8 +43,29 @@ export default {
   activated() {} //如果页面有keep-alive缓存功能，这个函数会触发
 };
 </script>
-<style lang="scss" scoped>
-.row {
+<style scoped>
+.gui-card {
+  width: 300px;
+  background: "white";
+  margin-top: 8px;
+  padding-top: 16px;
+  padding-bottom: 16px;
+  border: 1px solid #e8e8e8;
+}
+.header {
   display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 16px;
+  font-size: 18px;
+  padding-top: 0;
+  border-bottom: 1px solid #e8e8e8;
+  font-weight: 700;
+  color: #333;
+}
+.content {
+  padding-top: 12px;
+  padding: 8px;
+  color: grey;
 }
 </style>
