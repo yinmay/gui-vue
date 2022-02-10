@@ -18,7 +18,7 @@
     "@babel/core": "^7.9.6",
     "@storybook/vue": "^5.3.18",
     "babel-preset-vue": "^2.0.2",
-    "node-sass": "^4.14.0",
+    "node-sass": "^7.0.0",
     "postcss-selector-namespace": "^3.0.1",
     "sass-loader": "^8.0.2",
     "vue": "^2.5.2",
